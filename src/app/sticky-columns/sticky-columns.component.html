@@ -1,0 +1,47 @@
+<p>sticky-columns works!</p>
+
+<div class="container">
+  <div class="example-container mat-elevation-z8">
+    <mat-table [dataSource]="dataSource" *ngFor="let table of tables">
+      <ng-container matColumnDef="position" sticky>
+        <mat-header-cell *matHeaderCellDef> Ordem </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+        <mat-footer-cell *matFooterCellDef> Position Footer </mat-footer-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name" sticky>
+        <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        <mat-footer-cell *matFooterCellDef> Name Footer </mat-footer-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="weight">
+        <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+        <mat-footer-cell *matFooterCellDef> Weight Footer </mat-footer-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="symbol">
+        <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+        <mat-footer-cell *matFooterCellDef> Symbol Footer </mat-footer-cell>
+      </ng-container>
+
+      <ng-container *ngFor="let item of headerDias; let i = index;" matColumnDef="dia-{{item.DIA}}">
+        <mat-header-cell *matHeaderCellDef="let element"> {{element}} </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+        <mat-footer-cell *matFooterCellDef> Filler footer cell </mat-footer-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns; sticky: isSticky"></mat-header-row>
+
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+      <mat-footer-row *matFooterRowDef="displayedColumns;"></mat-footer-row>
+    </mat-table>
+  </div>
+</div>
+
+<ul>
+  <li *ngFor="let item of headerDias">{{item.DIA}}</li>
+</ul>
